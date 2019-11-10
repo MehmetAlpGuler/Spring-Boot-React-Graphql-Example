@@ -1,0 +1,51 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    allTours: [Tour]
+    tour(id: ID!): Tour
+}
+
+type Mutation {
+    createTour(input: CreateTourInput!) : Tour!
+    deleteTour(id: ID!) : Boolean!
+    updateTour(input: UpdateTourInput!) : Tour!
+}
+
+type Tour {
+    id: ID!
+    name: String!
+    price: String!
+    duration: String
+    description: String
+    type: TourType!
+    agency: Agency!
+}
+
+enum TourType {
+    ECONOMY
+    ADVENTURE
+    COUPLE
+    LUXURY
+}
+
+input CreateTourInput {
+    name: String!
+    price: String!
+    duration: String
+    description: String
+    type: TourType!
+    agency: ID!
+}
+
+input UpdateTourInput {
+    id: ID!
+    name: String!
+    price: String!
+    duration: String
+    description: String
+    type: TourType!
+    agency: ID!
+}
